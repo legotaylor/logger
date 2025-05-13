@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+}
+
+group = project.group
+archivesBaseName = project.name
+version = project.version
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+processResources {
+}
+
+jar {
+    manifest {
+        attributes["Implementation-Title"] = archivesBaseName
+        attributes["Implementation-Version"] = version
+    }
+}
