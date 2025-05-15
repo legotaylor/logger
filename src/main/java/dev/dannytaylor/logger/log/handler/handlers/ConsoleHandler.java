@@ -10,7 +10,7 @@ import java.util.Map;
 public class ConsoleHandler extends Handler {
 	private final Map<String, Color> styles = new HashMap<>();
 	public void log(Logger.Type type, String message) {
-		log(format(type, message), "");
+		log(format(type, message), type.name());
 	}
 	public void log(String log, String style) {
 		Color color = styles.get(style);
