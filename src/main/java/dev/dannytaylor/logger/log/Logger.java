@@ -11,19 +11,22 @@ public class Logger {
 	private final List<Handler> handlers;
 	public Logger() {
 		dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-		handlers = new ArrayList<>();
+		this.handlers = new ArrayList<>();
+	}
+	public List<Handler> getHandlers() {
+		return this.handlers;
 	}
 	public void registerHandler(Handler handler) {
-		handlers.add(handler.setDateTimeFormatter(dateTimeFormatter));
+		this.handlers.add(handler.setDateTimeFormatter(dateTimeFormatter));
 	}
 	private void log(Type type, String message) {
-		for (Handler handler : handlers) handler.log(type, message);
+		for (Handler handler : this.handlers) handler.log(type, message);
 	}
 	public void log(String message, String style) {
-		for (Handler handler : handlers) handler.log(message, style);
+		for (Handler handler : this.handlers) handler.log(message, style);
 	}
 	public void log(StringBuilder message, String style) {
-		for (Handler handler : handlers) handler.log(message.toString(), style);
+		for (Handler handler : this.handlers) handler.log(message.toString(), style);
 	}
 	public void unformatted(String message) {
 		log(message, Logger.Type.unformatted.name());
@@ -56,7 +59,7 @@ public class Logger {
 		log(Type.debug, message.toString());
 	}
 	public void close() {
-		for (Handler handler : handlers) handler.close();
+		for (Handler handler : this.handlers) handler.close();
 	}
 	public enum Type {
 		unformatted(""),
