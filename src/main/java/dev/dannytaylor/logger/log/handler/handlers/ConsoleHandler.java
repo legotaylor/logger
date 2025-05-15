@@ -13,7 +13,8 @@ public class ConsoleHandler extends Handler {
 		log(format(type, message), "");
 	}
 	public void log(String log, String style) {
-		System.out.println(ansiColor(styles.get(style)) + log + "\u001B[0m");
+		Color color = styles.get(style);
+		System.out.println((color != null ? ansiColor(color) : "") + log + "\u001B[0m");
 	}
 	public void addStyle(String id, Color color) {
 		styles.put(id, color);
